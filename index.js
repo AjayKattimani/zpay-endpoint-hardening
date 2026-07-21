@@ -1,5 +1,6 @@
 const express = require("express");
 const authenticate = require("./middleware/auth");
+const authorize = require("./middleware/authorization");
 const app = express();
 
 app.use(express.json());
@@ -9,6 +10,7 @@ const paymentRoutes = require("./routes/payment");
 
 // Register routes
 app.use(authenticate);
+app.use(authorize);
 app.use("/", paymentRoutes);
 
 // Home route
