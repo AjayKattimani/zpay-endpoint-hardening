@@ -2,12 +2,21 @@ const express = require("express");
 
 const app = express();
 
-// Home Route
+app.use(express.json());
+
+// Import payment routes
+const paymentRoutes = require("./routes/payment");
+
+// Register routes
+app.use("/", paymentRoutes);
+
+// Home route
 app.get("/", (req, res) => {
     res.send("Welcome to ZPay API");
 });
 
-// Start Server
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
