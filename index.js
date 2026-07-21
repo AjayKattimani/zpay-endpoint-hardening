@@ -1,6 +1,7 @@
 const express = require("express");
 const authenticate = require("./middleware/auth");
 const authorize = require("./middleware/authorization");
+const idempotency = require("./middleware/idempotency");
 const app = express();
 
 app.use(express.json());
@@ -11,6 +12,7 @@ const paymentRoutes = require("./routes/payment");
 // Register routes
 app.use(authenticate);
 app.use(authorize);
+app.use(idempotency);
 app.use("/", paymentRoutes);
 
 // Home route
