@@ -3,6 +3,7 @@ const authenticate = require("./middleware/auth");
 const authorize = require("./middleware/authorization");
 const idempotency = require("./middleware/idempotency");
 const rateLimiter = require("./middleware/rateLimiter");
+const versioning = require("./middleware/versioning");
 const app = express();
 
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(authenticate);
 app.use(authorize);
 app.use(rateLimiter);
 app.use(idempotency);
+app.use(versioning);
 app.use("/", paymentRoutes);
 
 // Home route
